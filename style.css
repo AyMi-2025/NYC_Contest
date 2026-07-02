@@ -40,5 +40,27 @@ nav{
 }
 
 button{
-    padding: 2%;
+    padding: 7px 10px;
+    font-weight: 500;
+    border: none;
+    border-radius: 7px;
+}
+
+h2:hover{
+    cursor: pointer;
+}
+
+h4:hover{
+    font-size: 25px;
+    cursor: pointer;
+    transition: 0.1s ease-in-out;
+    background-color: rgb(206, 176, 210);
+}
+
+button:hover{
+    border: 1px solid rgb(120, 112, 112);
+    cursor: pointer;
+    background-color: rgb(144, 42, 144);
+    color: white;
+    transition: 0.2s ease-in-out;
 }
