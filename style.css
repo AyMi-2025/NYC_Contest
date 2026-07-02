@@ -16,7 +16,7 @@ nav{
     height: 2.4rem;
     padding: 15px 30px;
     width: 100%;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(179, 163, 182);
 }
 
 .left-section{
@@ -40,7 +40,7 @@ nav{
 }
 
 button{
-    padding: 7px 10px;
+    padding: 7px 15px;
     font-weight: 500;
     border: none;
     border-radius: 7px;
@@ -54,13 +54,20 @@ h4:hover{
     font-size: 25px;
     cursor: pointer;
     transition: 0.1s ease-in-out;
-    background-color: rgb(206, 176, 210);
+    background-color: rgb(199, 173, 153);
 }
 
 button:hover{
     border: 1px solid rgb(120, 112, 112);
     cursor: pointer;
-    background-color: rgb(144, 42, 144);
+    background-color: rgb(143, 96, 57);
     color: white;
-    transition: 0.2s ease-in-out;
+}
+
+.darkMode{
+    background-color: black;
+}
+
+.darkModeNav{
+    background-color: black;
 }
