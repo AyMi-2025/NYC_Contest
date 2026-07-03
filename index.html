@@ -13,19 +13,20 @@
       <!-- navbar -->
       <div class="navbar">
         <h2 class="logo">KuchTohHai</h2>
-        <ul class="nav-links">
+        <i class="ri-menu-line" id="hamburgerBtn"></i>
+        <ul class="nav-links" id="navLinks">
         <h4>Home</h4>
         <h4>Features</h4>
         <h4>How it Works</h4>
-        <button id="lightBtn">🌙</button>
+        <button id="lightBtn">☀️</button>
 
-        <!-- logged out wala system-->
+        <!-- shown when logged out -->
         <span id="loggedOutLinks">
           <a href="signup.html"><button id="signup">Sign Up</button></a>
           <a href="login.html"><button id="login">Login</button></a>
         </span>
 
-        <!-- logged in wala system -->
+        <!-- shown when logged in, hidden by default -->
         <span id="loggedInLinks" style="display:none;">
           <span id="userEmailLabel"></span>
           <button id="logout">Log Out</button>

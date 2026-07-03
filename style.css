@@ -18,12 +18,63 @@
     align-items: center;
     justify-content: space-between;
     margin-right: 10px;
+    padding: 15px 20px;
+    position: relative;
 }
 .nav-links {
     display: flex;
     align-items: center;
     gap: 20px;
  
+}
+
+#hamburgerBtn {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* ---------- MOBILE KE LIYE HAI ---------- */
+@media (max-width: 768px) {
+
+    #hamburgerBtn {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgb(235, 228, 236);
+        padding: 20px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        z-index: 50;
+    }
+
+    .darkMode .nav-links {
+        background-color: rgb(38, 38, 38);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links #loggedOutLinks,
+    .nav-links #loggedInLinks {
+        display: flex;
+        gap: 12px;
+    }
+
+    .nav-links #loggedInLinks {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
 }
 
 
