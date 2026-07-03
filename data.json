@@ -38,8 +38,8 @@
       "Upskilling",
       "Job"
     ]
-  }
-    {
+  },
+  {
     "id": 5,
     "question": "What is your preferred learning style?",
     "options": [
@@ -49,5 +49,4 @@
       "No Preference "
     ]
   }
-  
 ]
