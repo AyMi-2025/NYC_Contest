@@ -1,0 +1,41 @@
+[
+ {
+  "id": 0,
+  "name": "Sheriyans Coding School",
+  "category": "Web Development",
+  "level": "Beginner",
+  "type": "Project-Based",
+  "cost": "Free & Paid",
+  "language": "English & Hindi",
+  "duration": "3-12 Months",
+  "bestFor": "Students who prefer practical, project-based learning with an active community",
+  "description": "Offers practical web development courses focused on building real-world projects and improving development skills.",
+  "link": "https://www.sheriyans.com"
+}
+  {
+  "id": 1,
+  "name": "Sheriyans Coding School",
+  "category": "Web Development",
+  "level": "Beginner",
+  "type": "Project-Based",
+  "cost": "Free & Paid",
+  "language": "English & Hindi",
+  "duration": "3-12 Months",
+  "bestFor": "Students who prefer practical, project-based learning with an active community",
+  "description": "Offers practical web development courses focused on building real-world projects and improving development skills.",
+  "link": "https://www.sheriyans.com"
+}
+{
+  "id": 3,
+  "name": "The Odin Project",
+  "category": "Web Development",
+  "level": "Beginner",
+  "type": "Project-Based",
+  "cost": "Free",
+  "language": "English",
+  "duration": "6-12 Months",
+  "bestFor": "Students who learn by building real projects",
+  "description": "A comprehensive full-stack web development curriculum with hands-on projects.",
+  "link": "https://www.theodinproject.com"
+}
+]
