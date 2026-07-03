@@ -50,7 +50,7 @@
         top: 100%;
         left: 0;
         width: 100%;
-        background-color: rgb(235, 228, 236);
+        background-color: rgb(255, 255, 255);
         padding: 20px;
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         z-index: 50;
@@ -235,15 +235,19 @@ h4:hover{
 
 /* Dashboard */
 .left-section{
+    width: 50%;
     font-size: 25px;
     padding: 50px 20px;
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
-
+.left-section h1{
+    padding: 15% 0 0 0;
+}
 .left-section p{
-    color: rgb(69, 67, 67);
+    padding: 0 0 0 0;
+    color: rgb(122, 107, 134);
     font-size: 20px;
 }
 
@@ -252,7 +256,8 @@ span{
 }
 
 .left-section button{
-    width: 20%;
+    border: none;
+    width: 230px;
     border-radius: 20px;
     font-size: 16px;
     background-color: rgb(91, 66, 251);
@@ -270,3 +275,20 @@ span{
     background-color: rgb(112, 94, 227);
 }
 
+.left-section img{
+    position: absolute;
+    padding: 0px 0px 0px 53%;
+    height: 40vw;
+}
+
+.bottom{
+    padding: 10% 0 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8%;
+}
+
+.bottom img{
+    width: 15vw;
+}
