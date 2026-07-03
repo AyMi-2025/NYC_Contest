@@ -5,36 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NYC Contest</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <script type="module" src="script.js" defer></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet"/>
 </head>
 <body>
     <main>
-      <! --- navbar --- >
+      <!-- navbar -->
       <div class="navbar">
-        <h2 class="logo">kuchtohhai</h2>
+        <h2 class="logo">KuchTohHai</h2>
         <ul class="nav-links">
         <h4>Home</h4>
         <h4>Features</h4>
         <h4>How it Works</h4>
-        <button id="lightBtn">☀️</button>
-        <button id="signup">Sign Up</button>
-         <button id="login">Login</button>
+        <button id="lightBtn">🌙</button>
+
+        <!-- logged out wala system-->
+        <span id="loggedOutLinks">
+          <a href="signup.html"><button id="signup">Sign Up</button></a>
+          <a href="login.html"><button id="login">Login</button></a>
+        </span>
+
+        <!-- logged in wala system -->
+        <span id="loggedInLinks" style="display:none;">
+          <span id="userEmailLabel"></span>
+          <button id="logout">Log Out</button>
+        </span>
         </ul>
       </div>
-        
-      
-<!--  LOGIN PAGE 
-  
-         <div class="login-page">
-            <form>
-            <h1>Sign Up</h1>
-            <input type="text" placeholder="Enter Your Name"><br>
-            <input type="email" placeholder="Enter Your Email"><br>
-            <button>Submit</button>
-         </form>
-         </div>
-          -->
+
     </main>
 
     <!-- <footer>
