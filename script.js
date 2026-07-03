@@ -7,7 +7,6 @@ const form = document
 
 btn.addEventListener("click", () => {
     if(body.classList.toggle('darkMode')){
-<<<<<<< HEAD
         btn.textContent = "🌙";
     }else{
         btn.textContent = "☀️";
@@ -54,13 +53,3 @@ onAuthStateChanged(auth, (user) => {
 logoutBtn.addEventListener("click", () => {
     signOut(auth);
 });
-=======
-        btn.textContent = "☀️";
-    
-    }else{
-        btn.textContent = "🌙";
-     
-    }
-})
-  
->>>>>>> c351bd9da0af677bee791ce4d2fc11a8c81d2743
