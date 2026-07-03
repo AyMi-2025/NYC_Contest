@@ -34,7 +34,7 @@
     cursor: pointer;
 }
 
-/* ---------- MOBILE KE LIYE HAI ---------- */
+/* ---------- Responsive navbar / hamburger menu ---------- */
 @media (max-width: 768px) {
 
     #hamburgerBtn {

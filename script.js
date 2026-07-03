@@ -1,9 +1,9 @@
+import { auth } from "./firebase-config.js";
+import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+// ---------- Dark mode ----------
 const btn = document.querySelector('#lightBtn');
 const body = document.querySelector("body");
-const signup = document.querySelector("#signup");
-const login = document.querySelector('login');
-
-const form = document
 
 btn.addEventListener("click", () => {
     if(body.classList.toggle('darkMode')){
@@ -13,8 +13,7 @@ btn.addEventListener("click", () => {
     }
 })
 
-
-// ---------- Hamburger menu (mobile) ----------
+// ---------- Mobile ----------
 const hamburgerBtn = document.querySelector('#hamburgerBtn');
 const navLinks = document.querySelector('#navLinks');
 
@@ -24,7 +23,7 @@ hamburgerBtn.addEventListener("click", () => {
     hamburgerBtn.classList.toggle('ri-close-line', isOpen);
 });
 
-// close the menu automatically once a nav item is tapped (mobile UX)
+
 navLinks.addEventListener("click", (e) => {
     if (e.target.tagName === "H4" || e.target.tagName === "BUTTON" || e.target.tagName === "A") {
         navLinks.classList.remove('active');
