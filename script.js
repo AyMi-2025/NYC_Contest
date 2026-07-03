@@ -1,12 +1,13 @@
-import { auth } from "./firebase-config.js";
-import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-
-// ---------- Dark mode toggle ----------
 const btn = document.querySelector('#lightBtn');
 const body = document.querySelector("body");
+const signup = document.querySelector("#signup");
+const login = document.querySelector('login');
+
+const form = document
 
 btn.addEventListener("click", () => {
     if(body.classList.toggle('darkMode')){
+<<<<<<< HEAD
         btn.textContent = "🌙";
     }else{
         btn.textContent = "☀️";
@@ -53,3 +54,13 @@ onAuthStateChanged(auth, (user) => {
 logoutBtn.addEventListener("click", () => {
     signOut(auth);
 });
+=======
+        btn.textContent = "☀️";
+    
+    }else{
+        btn.textContent = "🌙";
+     
+    }
+})
+  
+>>>>>>> c351bd9da0af677bee791ce4d2fc11a8c81d2743
