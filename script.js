@@ -7,8 +7,11 @@ const form = document
 
 btn.addEventListener("click", () => {
     if(body.classList.toggle('darkMode')){
-        btn.textContent = "⏾"
+        btn.textContent = "🌙";
+    
     }else{
-        btn.textContent = "☀︎"
+        btn.textContent = "☀️";
+     
     }
 })
+    
