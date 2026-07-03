@@ -13,6 +13,7 @@ btn.addEventListener("click", () => {
     }
 })
 
+
 // ---------- Hamburger menu (mobile) ----------
 const hamburgerBtn = document.querySelector('#hamburgerBtn');
 const navLinks = document.querySelector('#navLinks');
