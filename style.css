@@ -316,3 +316,79 @@ span{
 .bottom img{
     width: 15vw;
 }
+
+
+/* Footer Start */
+
+.site-footer {
+    margin-top: 20%;
+    background: #f5f1f8;
+    padding: 48px 48px 20px;
+    border-top: 1px solid #e0d8e8;
+}
+
+.footer-top {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 32px;
+    max-width: 1200px;
+    margin: 0 auto 32px;
+}
+
+.footer-brand h3 {
+    font-size: 1.5rem;
+    color: #2b2b33;
+    margin-bottom: 6px;
+}
+
+.footer-brand p {
+    color: #6b6875;
+    font-size: 0.9rem;
+    max-width: 220px;
+}
+
+.footer-col h4 {
+    font-size: 0.9rem;
+    color: #3a3a45;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.footer-col a {
+    display: block;
+    color: #4c4a56;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.footer-col a:hover {
+    color: #6c4bd6;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 16px;
+    border-top: 1px solid #e0d8e8;
+    font-size: 0.85rem;
+    color: #8a8794;
+}
+
+/* dark mode */
+body.darkMode .site-footer {
+    background: #26242e;
+    border-color: #3a3845;
+}
+
+body.darkMode .footer-brand h3,
+body.darkMode .footer-col h4 {
+    color: #eee;
+}
+
+body.darkMode .footer-brand p,
+body.darkMode .footer-col a,
+body.darkMode .footer-bottom {
+    color: #b8b5c0;
+}
