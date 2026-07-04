@@ -22,6 +22,10 @@
     position: relative;
 }
 
+.navbar img{
+    width: 5rem;
+}
+
 .navbar h4 a{
     color: black;
     text-decoration: none;
@@ -262,7 +266,7 @@ h4 a:hover{
     gap: 15px;
 }
 .left-section h1{
-    padding: 15% 0 0 0;
+    padding: 7% 0 0 0;
 }
 .left-section p{
     padding: 0 0 0 0;
