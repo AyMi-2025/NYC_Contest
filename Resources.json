@@ -11,7 +11,7 @@
       "duration": "3-12 Months",
       "bestFor": "Students who prefer practical, project-based learning with an active community",
       "description": "Offers practical web development courses focused on building real-world projects and improving development skills.",
-      "link": "https://www.sheriyans.com"
+      "link": "https://www.sheriyans.com/"
     },
     {
       "id": 2,
@@ -24,7 +24,7 @@
       "duration": "6-12 Months",
       "bestFor": "Beginners who want a structured curriculum with coding exercises and certifications",
       "description": "A free learning platform offering interactive lessons, coding challenges, projects, and certifications.",
-      "link": "https://www.freecodecamp.org"
+      "link": "https://www.freecodecamp.org/"
     },
     {
       "id": 3,
@@ -37,7 +37,7 @@
       "duration": "6-12 Months",
       "bestFor": "Learners who want to build real-world projects and become full-stack developers",
       "description": "A comprehensive full-stack web development curriculum focused on hands-on projects and modern development workflows.",
-      "link": "https://www.theodinproject.com"
+      "link": "https://www.theodinproject.com/"
     },
     {
       "id": 4,
@@ -50,7 +50,7 @@
       "duration": "3-6 Months",
       "bestFor": "Developers who already know the basics and want to master modern full-stack development",
       "description": "An advanced course covering React, Node.js, databases, testing, and deployment.",
-      "link": "https://fullstackopen.com"
+      "link": "https://fullstackopen.com/"
     },
     {
       "id": 5,
