@@ -56,4 +56,4 @@ logoutBtn.addEventListener("click", () => {
     signOut(auth);
 });
 
-  
+
