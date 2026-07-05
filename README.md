@@ -14,7 +14,9 @@
 
 Students often spend hours comparing YouTube playlists, blogs, Reddit discussions, and AI recommendations before they even begin learning.
 
-Our platform tackles this problem by helping learners discover the most suitable resources based on their goals, experience level, and learning preferences—so they can start learning with confidence instead of getting lost in endless searching.
+Our platform helps students discover the right learning resources through personalized recommendations based on their goals, experience level, and learning preferences.
+
+Instead of spending hours comparing countless tutorials, learners can confidently start with resources tailored to them.
 
 ---
 
@@ -26,20 +28,39 @@ We want them to spend that time **actually learning.**
 
 ---
 
+# 🎯 Project Goals
+
+- 📚 Curate high-quality learning resources
+- 🤖 Recommend personalized learning experiences
+- 📅 Help students organize and plan their learning journey
+- ⏳ Reduce time spent searching for resources
+- 🚀 Help students start learning with confidence
+
+---
+
 # ✨ Current Features
 
 - 🎨 Modern & Responsive UI
 - 🌙 Dark Mode
-- 🔐 Login & Sign Up Authentication
+- 🔐 Firebase Authentication (Login & Sign Up)
 - 🏠 Landing Page
-- 📄 Dedicated Home, Features & How It Works Pages
+- 📄 Home, Features & How It Works Pages
 - 🦶 Responsive Footer
-- 🖱️ Interactive Buttons & Navigation
-- 🎯 Clickable Logo
-- 🎨 Custom Branding (Logo & Favicon)
+- 🖱️ Interactive Navigation & Buttons
+- 🎯 Custom Logo & Branding
+- 🎨 Favicon Integration
 - ⚡ Smooth Animations & Hover Effects
+- 📱 Responsive Design
 - 🐞 UI & Navigation Improvements
-- 🏗️ Well-Structured Project Architecture
+- 🏗️ Scalable Project Architecture
+
+---
+
+# 🚧 Repository Status
+
+The repository currently reflects the latest **stable version** of the project.
+
+Some redesigned interfaces, pages, and features showcased in our development updates are still under active development and will be pushed once they're complete and thoroughly tested.
 
 ---
 
@@ -101,6 +122,14 @@ We want them to spend that time **actually learning.**
 
 ---
 
+# 🚀 Development Journey
+
+We're building this project in public as part of the **NYC CodeQuest 2026 Hackathon** hosted by **Not Your College**.
+
+Every discussion, redesign, bug fix, and feature implementation brings us one step closer to solving **Resource FOMO** for students worldwide.
+
+---
+
 # 🔗 Links
 
 - 🌐 **Live Demo:** *Coming Soon*
@@ -112,25 +141,29 @@ We want them to spend that time **actually learning.**
 
 Built with ❤️ during **NYC CodeQuest 2026 Hackathon** by **Not Your College**.
 
-### 👨‍💻 Sehjal Saxena
+### 👨‍💻 Sehjal Saxena — Product Lead
+
 💻 GitHub: https://github.com/sehjalsaxena  
 🔗 LinkedIn: https://linkedin.com/in/sehjalsaxena
 
 ---
 
-### 👨‍💻 Ayan Maiti
+### 👨‍💻 Ayan Maiti — Lead Frontend Developer
+
 💻 GitHub: https://github.com/AyMi-2025  
 🔗 LinkedIn: https://www.linkedin.com/in/ayan-maiti-am05052008
 
 ---
 
-### 👨‍💻 Pratyush Kapoor
+### 👨‍💻 Pratyush Kapoor — Team Lead
+
 💻 GitHub: https://github.com/Crimson561  
 🔗 LinkedIn: https://www.linkedin.com/in/pratyush-kapoor-9ab828412
 
 ---
 
-### 👨‍💻 Anik Ghosh
+### 👨‍💻 Anik Ghosh — Video Editor
+
 💻 GitHub: https://github.com/anik-ghosh-io  
 🔗 LinkedIn: https://www.linkedin.com/in/anik-ghosh-19571841b
 
@@ -145,6 +178,14 @@ If you'd like to support the project:
 - ⭐ Star this repository
 - 🐛 Report bugs or suggest improvements
 - 💡 Share your ideas through Issues or Discussions
+
+---
+
+# 📄 License
+
+This project is being developed for the **NYC CodeQuest 2026 Hackathon**.
+
+Feel free to explore the code, share feedback, and follow our development journey.
 
 ---
 
