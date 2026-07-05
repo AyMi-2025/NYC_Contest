@@ -46,9 +46,11 @@ onAuthStateChanged(auth, (user) => {
         loggedOutLinks.style.display = "none";
         loggedInLinks.style.display = "flex";
         userEmailLabel.textContent = user.email;
+      startjourney.href = "quiz.html";
     } else {
         loggedOutLinks.style.display = "inline";
         loggedInLinks.style.display = "none";
+      startjourney.href = "login.html"
     }
 });
 

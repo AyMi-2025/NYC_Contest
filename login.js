@@ -30,7 +30,7 @@ loginForm.addEventListener("submit", (e) => {
 
     signInWithEmailAndPassword(auth, email, password)
         .then(() => {
-            window.location.href = "index.html";
+            window.location.href = "quiz.html";
         })
         .catch((err) => {
             loginError.textContent = friendlyError(err.code);
