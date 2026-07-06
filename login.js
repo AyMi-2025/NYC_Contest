@@ -1,17 +1,25 @@
-import { auth } from "./js/firebase-config.js";
-import { getPostAuthDestination } from "./js/auth-guard.js";
+import { auth, db } from "./js/firebase-config.js";
 import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 // ---------- Dark mode toggle ----------
 const btn = document.querySelector('#lightBtn');
 const body = document.querySelector("body");
 
 btn.addEventListener("click", () => {
-    if(body.classList.toggle('darkMode')){
-        btn.textContent = "🌙";
-    }else{
-        btn.textContent = "☀️";
-    }
+    if (btn) {
+    btn.textContent = body.classList.contains("darkMode") ? "☀️" : "🌙";
+
+    btn.addEventListener("click", () => {
+        body.classList.toggle("darkMode");
+
+        const isDark = body.classList.contains("darkMode");
+
+        btn.textContent = isDark ? "☀️" : "🌙";
+
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+    })
+}
 })
 
 // ---------- Login ----------
@@ -31,16 +39,18 @@ loginForm.addEventListener("submit", (e) => {
 
     signInWithEmailAndPassword(auth, email, password)
         .then(async (userCredential) => {
+            // Returning users skip the questionnaire entirely — check
+            // Firestore before deciding where to send them.
+            let completed = true;
+
             try {
-                const destination = await getPostAuthDestination(userCredential.user, "");
-                window.location.href = destination;
+                const userDoc = await getDoc(doc(db, "users", userCredential.user.uid));
+                completed = userDoc.exists() && userDoc.data().questionnaireCompleted === true;
             } catch (err) {
-                console.error("Could not check questionnaire status:", err);
-                loginError.textContent = "Logged in, but couldn't load your profile. Please check your connection and try again.";
-                loginError.classList.add("show");
-                loginSubmitBtn.disabled = false;
-                loginSubmitBtn.textContent = "Submit";
+                console.warn("Could not read user doc from Firestore — defaulting to questionnaire.", err);
             }
+
+            window.location.href = completed ? "dashboard.html" : "pages/questionnaire.html";
         })
         .catch((err) => {
             loginError.textContent = friendlyError(err.code);
