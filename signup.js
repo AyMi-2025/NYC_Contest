@@ -1,5 +1,6 @@
-import { auth } from "./firebase-config.js";
+import { auth, db } from "./js/firebase-config.js";
 import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 // ---------- Dark mode toggle ----------
 const btn = document.querySelector('#lightBtn');
@@ -29,8 +30,18 @@ signupForm.addEventListener("submit", (e) => {
     signupSubmitBtn.textContent = "Creating account...";
 
     createUserWithEmailAndPassword(auth, email, password)
-        .then(() => {
-            window.location.href = "index.html";
+        .then(async (userCredential) => {
+            try {
+                await setDoc(
+                    doc(db, "users", userCredential.user.uid),
+                    { questionnaireCompleted: false },
+                    { merge: true }
+                );
+            } catch (err) {
+                console.warn("Could not initialize user doc in Firestore.", err);
+            }
+
+            window.location.href = "pages/questionnaire.html";
         })
         .catch((err) => {
             signupError.textContent = friendlyError(err.code);

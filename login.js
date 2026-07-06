@@ -1,4 +1,5 @@
-import { auth } from "./firebase-config.js";
+import { auth } from "./js/firebase-config.js";
+import { getPostAuthDestination } from "./js/auth-guard.js";
 import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 // ---------- Dark mode toggle ----------
@@ -29,8 +30,17 @@ loginForm.addEventListener("submit", (e) => {
     loginSubmitBtn.textContent = "Logging in...";
 
     signInWithEmailAndPassword(auth, email, password)
-        .then(() => {
-            window.location.href = "quiz.html";
+        .then(async (userCredential) => {
+            try {
+                const destination = await getPostAuthDestination(userCredential.user, "");
+                window.location.href = destination;
+            } catch (err) {
+                console.error("Could not check questionnaire status:", err);
+                loginError.textContent = "Logged in, but couldn't load your profile. Please check your connection and try again.";
+                loginError.classList.add("show");
+                loginSubmitBtn.disabled = false;
+                loginSubmitBtn.textContent = "Submit";
+            }
         })
         .catch((err) => {
             loginError.textContent = friendlyError(err.code);
