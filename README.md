@@ -301,33 +301,39 @@ SIFT is just getting started. Here's where it's headed:
 <table>
 <tr>
 <td align="center" width="25%">
-<b>Sehjal Saxena</b><br/>
-<sub>Product Lead</sub><br/><br/>
-Product Vision • Product Strategy • UI/UX Planning<br/>
-Recommendation Engine • Dashboard Design<br/>
-Resource Architecture • Feature Planning<br/>
-Documentation • Project Management<br/><br/>
-<a href="https://github.com/sehjalsaxena">GitHub</a> · <a href="https://linkedin.com/in/sehjalsaxena">LinkedIn</a>
-</td>
-<td align="center" width="25%">
 <b>Pratyush Kapoor</b><br/>
 <sub>Team Lead</sub><br/><br/>
 Team Coordination • Project Management<br/>
-Feature Planning • Overall Development Support<br/><br/><br/><br/>
+Feature Planning • Overall Development Support<br/>
+Sprint Planning • Task Delegation<br/>
+Team Communication<br/><br/>
 <a href="https://github.com/Crimson561">GitHub</a> · <a href="https://www.linkedin.com/in/pratyush-kapoor-9ab828412">LinkedIn</a>
+</td>
+<td align="center" width="25%">
+<b>Sehjal Saxena</b><br/>
+<sub>Product Lead</sub><br/><br/>
+Product Vision & Strategy • UI/UX Planning<br/>
+Recommendation Engine • Curated Database<br/>
+Feature Planning • Documentation & Social Media<br/>
+Project Management<br/><br/>
+<a href="https://github.com/sehjalsaxena">GitHub</a> · <a href="https://linkedin.com/in/sehjalsaxena">LinkedIn</a>
 </td>
 <td align="center" width="25%">
 <b>Ayan Maiti</b><br/>
 <sub>Lead Frontend Developer</sub><br/><br/>
 Frontend Development • UI Implementation<br/>
-Responsive Design • Frontend Optimization<br/><br/><br/><br/>
+Responsive Design • Frontend Optimization<br/>
+Component Architecture • Cross-Browser Testing<br/>
+Performance Tuning<br/><br/>
 <a href="https://github.com/AyMi-2025">GitHub</a> · <a href="https://www.linkedin.com/in/ayan-maiti-am05052008">LinkedIn</a>
 </td>
 <td align="center" width="25%">
 <b>Anik Ghosh</b><br/>
 <sub>Video Editor</sub><br/><br/>
 Demo Video • Product Presentation<br/>
-Promotional Content<br/><br/><br/><br/>
+Promotional Content • Video Scripting<br/>
+Social Media Clips • Thumbnail Design<br/>
+Content Editing<br/><br/>
 <a href="https://github.com/anik-ghosh-io">GitHub</a> · <a href="https://www.linkedin.com/in/anik-ghosh-19571841b">LinkedIn</a>
 </td>
 </tr>
