@@ -7,12 +7,22 @@ const btn = document.querySelector('#lightBtn');
 const body = document.querySelector("body");
 
 btn.addEventListener("click", () => {
-    if(body.classList.toggle('darkMode')){
-        btn.textContent = "🌙";
-    }else{
-        btn.textContent = "☀️";
-    }
+    if (btn) {
+    btn.textContent = body.classList.contains("darkMode") ? "☀️" : "🌙";
+
+    btn.addEventListener("click", () => {
+        body.classList.toggle("darkMode");
+
+        const isDark = body.classList.contains("darkMode");
+
+        btn.textContent = isDark ? "☀️" : "🌙";
+
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+    });
+}
 })
+
+
 
 // ---------- Sign up ----------
 const signupForm = document.querySelector("#signupForm");
@@ -31,6 +41,10 @@ signupForm.addEventListener("submit", (e) => {
 
     createUserWithEmailAndPassword(auth, email, password)
         .then(async (userCredential) => {
+            // Every new signup is, by definition, a first-time user —
+            // seed their user doc with questionnaireCompleted: false so
+            // login.js's check has something consistent to read, then
+            // always send them to the questionnaire (never index.html).
             try {
                 await setDoc(
                     doc(db, "users", userCredential.user.uid),
