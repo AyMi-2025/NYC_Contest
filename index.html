@@ -6,6 +6,7 @@
     <title>SIFT - Stop Searching. Start Learning.</title>
     <link rel="stylesheet" href="style.css">
     <script type="module" src="script.js" defer></script>
+    <script type="module" src="js/landing.js" defer></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet"/>
     <link rel="shortcut icon" href="images/logo.png" type="image/x-icon">
 </head>
@@ -46,7 +47,9 @@
         <p>Discover carefully curated resources <br>
         tailored to your goals, experience, <br>
         and learning preferences.</p>
-        <a href="signup.html"><button>Start Your Journey <span><i class="ri-arrow-right-line"></i></span></button></a>
+        <!-- No longer a plain <a href="signup.html">: destination now
+             depends on auth state, decided at click-time by js/landing.js -->
+        <button id="startJourneyBtn">Start Your Journey <span><i class="ri-arrow-right-line"></i></span></button>
       </div>
       <div class="hero-image">
         <img src="images/hero-image.png" alt="pics">

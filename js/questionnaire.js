@@ -12,6 +12,8 @@ const multiHint = document.getElementById("multiHint");
 
 let currentStep = 1;
 
+// Answers keyed by each step's data-key (skill, experience, goal,
+// learningStyle, language, studyTime, preferences[])
 const answers = {};
 
 /**
@@ -72,10 +74,12 @@ function handleOptionClick(step, card) {
     const value = card.dataset.value;
 
     if (max === 1) {
+        // Single select: clear siblings, select this one.
         step.querySelectorAll(".option-card").forEach((c) => c.classList.remove("selected"));
         card.classList.add("selected");
         answers[key] = value;
     } else {
+        // Multi select (max 2): toggle, evicting nothing unless full.
         if (!Array.isArray(answers[key])) answers[key] = [];
 
         const isSelected = card.classList.contains("selected");
@@ -85,6 +89,7 @@ function handleOptionClick(step, card) {
             answers[key] = answers[key].filter((v) => v !== value);
         } else {
             if (answers[key].length >= max) {
+                return; 
             }
             card.classList.add("selected");
             answers[key].push(value);
@@ -140,8 +145,14 @@ async function finishQuestionnaire() {
         loadingStepEls[i].querySelector("i").className = "ri-checkbox-circle-line";
     }
 
+    try {
     await workPromise;
-    window.location.href = "../dashboard.html";
+    } catch (err) {
+    console.error("Recommendation process failed:", err);
+    }
+
+window.location.href = "../dashboard.html";
+
 }
 
 function delay(ms) {
@@ -164,6 +175,7 @@ async function saveAndRecommend() {
         );
 
         uid = auth.currentUser ? auth.currentUser.uid : null;
+        const recommendation = await buildRecommendation();
 
         if (uid) {
             await setDoc(
@@ -171,28 +183,20 @@ async function saveAndRecommend() {
                 {
                     questionnaire: answers,
                     questionnaireCompleted: true,
-                },
-                { merge: true }
-            );
-        }
-
-        const recommendation = await buildRecommendation();
-
-        if (uid && recommendation) {
-            await setDoc(
-                doc(db, "users", uid),
-                {
-                    bestResource: recommendation.best,
-                    topResources: recommendation.top3,
-                    confidenceScore: recommendation.confidenceScore,
+                    bestResource: recommendation ? recommendation.best : null,
+                    topResources: recommendation ? recommendation.top3 : [],
+                    confidenceScore: recommendation ? recommendation.confidenceScore : 0,
                     progress: 0,
                 },
                 { merge: true }
             );
         }
     } catch (err) {
-        console.warn("Could not save questionnaire to Firestore — check firebase-config.js.", err);
-    }
+    console.error("saveAndRecommend failed:", err);
+
+    // Don't stop the user from reaching the dashboard.
+    return;
+}
 }
 
 /**
