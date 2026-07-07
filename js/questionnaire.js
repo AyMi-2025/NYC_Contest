@@ -1,3 +1,15 @@
+// ============================================================
+// SIFT Onboarding Questionnaire
+// Handles: step navigation, selection rules, progress bar,
+// Firestore save, resource scoring, and redirect to dashboard.
+//
+// NOTE ON AUTH: like script.js, the Firebase import is dynamic
+// (not a static top-level `import`) so a missing/placeholder
+// firebase-config.js can't take down the whole page — the wizard
+// UI below still works, it just won't persist/redirect with real
+// auth until firebase-config.js is wired up.
+// ============================================================
+
 const steps = Array.from(document.querySelectorAll(".step"));
 const totalSteps = steps.length;
 
@@ -89,7 +101,7 @@ function handleOptionClick(step, card) {
             answers[key] = answers[key].filter((v) => v !== value);
         } else {
             if (answers[key].length >= max) {
-                return; 
+                return; // already at the cap, ignore extra clicks
             }
             card.classList.add("selected");
             answers[key].push(value);
@@ -123,6 +135,58 @@ nextBtn.addEventListener("click", async () => {
 
 renderStep();
 
+// ------------------------------------------------------------
+// Prefill: if the user already has saved questionnaire answers
+// (i.e. they arrived here via "Edit Learning Preferences" rather
+// than as a brand-new user), load them and pre-select the matching
+// option cards so they're editing, not starting from scratch.
+// Runs after renderStep() so the wizard is already in its normal
+// state; this only adds selections on top of it.
+// ------------------------------------------------------------
+prefillFromExistingAnswers();
+
+async function prefillFromExistingAnswers() {
+    try {
+        const { auth, db } = await import("../js/firebase-config.js");
+        const { doc, getDoc } = await import(
+            "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"
+        );
+
+        const uid = auth.currentUser ? auth.currentUser.uid : null;
+        if (!uid) return; // not signed in yet — nothing to prefill
+
+        const snapshot = await getDoc(doc(db, "users", uid));
+        if (!snapshot.exists()) return;
+
+        const existing = snapshot.data().questionnaire;
+        if (!existing) return; // first-time user — leave wizard blank
+
+        steps.forEach((step) => {
+            const key = step.dataset.key;
+            const savedValue = existing[key];
+            if (!savedValue) return;
+
+            const values = Array.isArray(savedValue) ? savedValue : [savedValue];
+
+            step.querySelectorAll(".option-card").forEach((card) => {
+                if (values.includes(card.dataset.value)) {
+                    card.classList.add("selected");
+                }
+            });
+
+            answers[key] = Array.isArray(savedValue) ? [...savedValue] : savedValue;
+        });
+
+        // Re-validate the currently visible step now that answers[]
+        // may be populated (enables Next if step 1 was prefilled).
+        validateCurrentStep();
+    } catch (err) {
+        // Prefill is a convenience, not a requirement — if it fails,
+        // the user can still fill out the questionnaire from scratch.
+        console.warn("Could not prefill previous questionnaire answers.", err);
+    }
+}
+
 /**
  * Runs the completion sequence: swap to the loading screen, step
  * through the animated status list, save to Firestore, score
@@ -134,6 +198,9 @@ async function finishQuestionnaire() {
 
     const loadingStepEls = Array.from(document.querySelectorAll(".loading-step"));
 
+    // Kick off the real work (save + scoring) alongside the animated
+    // status list, so the 2-3s delay reflects actual processing time
+    // rather than an arbitrary fake wait.
     const workPromise = saveAndRecommend();
 
     for (let i = 0; i < loadingStepEls.length; i++) {
@@ -175,6 +242,12 @@ async function saveAndRecommend() {
         );
 
         uid = auth.currentUser ? auth.currentUser.uid : null;
+
+        // Recommendation engine runs first (reusing buildRecommendation/
+        // scoreResource unchanged) so its result is available before we
+        // write anything — this lets questionnaire + recommendation
+        // fields be written together in one atomic call instead of two
+        // separate, conditionally-skippable ones.
         const recommendation = await buildRecommendation();
 
         if (uid) {
