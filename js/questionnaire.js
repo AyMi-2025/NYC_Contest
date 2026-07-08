@@ -213,13 +213,12 @@ async function finishQuestionnaire() {
     }
 
     try {
-    await workPromise;
+        await workPromise;
     } catch (err) {
-    console.error("Recommendation process failed:", err);
+        console.error("Recommendation process failed:", err);
     }
 
-window.location.href = "../dashboard.html";
-
+    window.location.href = "../dashboard.html";
 }
 
 function delay(ms) {
@@ -231,6 +230,12 @@ function delay(ms) {
  * runs the recommendation engine against resources.json, then
  * writes the result (best resource, top 3, confidence score) back
  * to the user's document.
+ *
+ * IMPORTANT: questionnaire fields and recommendation fields are
+ * written together in ONE setDoc call. This is the actual fix for
+ * Bug 2 — the previous version wrote them in two separate calls,
+ * and skipped the second one entirely if buildRecommendation()
+ * failed, silently leaving old/stale recommendation data in place.
  */
 async function saveAndRecommend() {
     let uid = null;
@@ -243,11 +248,6 @@ async function saveAndRecommend() {
 
         uid = auth.currentUser ? auth.currentUser.uid : null;
 
-        // Recommendation engine runs first (reusing buildRecommendation/
-        // scoreResource unchanged) so its result is available before we
-        // write anything — this lets questionnaire + recommendation
-        // fields be written together in one atomic call instead of two
-        // separate, conditionally-skippable ones.
         const recommendation = await buildRecommendation();
 
         if (uid) {
@@ -265,11 +265,10 @@ async function saveAndRecommend() {
             );
         }
     } catch (err) {
-    console.error("saveAndRecommend failed:", err);
-
-    // Don't stop the user from reaching the dashboard.
-    return;
-}
+        console.error("saveAndRecommend failed:", err);
+        // Don't stop the user from reaching the dashboard.
+        return;
+    }
 }
 
 /**
@@ -343,8 +342,9 @@ function scoreResource(resource, userAnswers) {
         }
     }
 
-    // Study time — 5% (rewards shorter resources for shorter daily time)
-    if (resource.duration && userAnswers.studyTime) {
+    // Study time — 5% (real comparison against the resource's tagged
+    // studyTime field, not just "both fields exist")
+    if (resource.studyTime && userAnswers.studyTime && resource.studyTime === userAnswers.studyTime) {
         score += 5;
     }
 
