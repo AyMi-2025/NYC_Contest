@@ -29,8 +29,6 @@ const nextCardHeading = document.getElementById("nextCardHeading");
 const nextCardText = document.getElementById("nextCardText");
 const journeyStepRecommend = document.getElementById("journeyStepRecommend");
 const journeyStepLearning = document.getElementById("journeyStepLearning");
-const completionBarFill = document.getElementById("completionBarFill");
-const completionPercentLabel = document.getElementById("completionPercentLabel");
 
 const whyResourceCard = document.getElementById("whyResourceCard");
 const whyList = document.getElementById("whyList");
@@ -170,8 +168,6 @@ async function loadDashboard(user, db, doc, getDoc) {
             generateBtn.disabled = true; // still non-interactive; it's a status, not an action
         }
 
-        completionBarFill.style.width = "90%";
-        completionPercentLabel.textContent = "90%";
     } else {
         // Original v1 behavior: nothing generated yet.
         if (generateBtn) {

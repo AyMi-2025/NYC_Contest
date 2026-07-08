@@ -750,7 +750,7 @@
                     </div>
                 </div>
 
-                <a href="pages/questionnaire.html"><button class="btn-secondary"><i class="ri-edit-line"></i> Edit Questionnaire</button></a>
+                <a href="pages/questionnaire.html"><button class="btn-secondary"><i class="ri-edit-line"></i> Retake Questionnaire</button></a>
             </section>
 
             <!-- Section 3: Learning Preferences badges -->
@@ -799,6 +799,17 @@
                 </div>
             </section>
 
+            <!-- Section 6: What's Next CTA — copy/button swap between
+                 "not generated yet" and "already generated" states,
+                 controlled by dashboard.js based on Firestore data. -->
+            <section class="card next-card">
+                <h2 id="nextCardHeading">You're Almost Ready!</h2>
+                <p id="nextCardText">We've successfully understood your learning profile. The next step is to analyze your preferences and recommend the learning resources that best match your goals.</p>
+                <div class="cta-buttons">
+                    <button class="btn-primary" id="generateBtn" disabled><i class="ri-hourglass-line"></i> Coming Soon</button>
+                </div>
+            </section>
+
             <!-- Section 4b: Recommended Resources — only rendered once
                  questionnaire.js has written topResources/confidenceScore
                  to Firestore. Hidden by default; dashboard.js reveals it. -->
@@ -835,28 +846,6 @@
                     <table class="compare-table" id="compareTable">
                         <!-- populated by dashboard.js -->
                     </table>
-                </div>
-            </section>
-
-            <!-- Section 5: Profile Completion -->
-            <section class="card">
-                <h2>Profile Completion</h2>
-                <span class="completion-percent" id="completionPercentLabel">65%</span>
-                <div class="completion-bar-track">
-                    <div class="completion-bar-fill" id="completionBarFill" style="width: 65%;"></div>
-                </div>
-                <p class="card-sub" style="margin-bottom:0;">Your profile is complete. The next step is generating personalized learning recommendations.</p>
-            </section>
-
-            <!-- Section 6: What's Next CTA — copy/button swap between
-                 "not generated yet" and "already generated" states,
-                 controlled by dashboard.js based on Firestore data. -->
-            <section class="card next-card">
-                <h2 id="nextCardHeading">You're Almost Ready!</h2>
-                <p id="nextCardText">We've successfully understood your learning profile. The next step is to analyze your preferences and recommend the learning resources that best match your goals.</p>
-                <div class="cta-buttons">
-                    <button class="btn-primary" id="generateBtn" disabled><i class="ri-hourglass-line"></i> Coming Soon</button>
-                    <a href="pages/questionnaire.html"><button class="btn-secondary">Retake Questionnaire</button></a>
                 </div>
             </section>
 
@@ -907,13 +896,6 @@
                     <button class="btn-secondary" id="quickLogoutBtn"><i class="ri-logout-box-line"></i> Logout</button>
                 </div>
             </section>
-
-            <!-- Future-ready space: intentionally empty. Reserved for
-                 Recommendation Confidence, Top 3 Resources, Resource
-                 Comparison, Why This / Why Not, and Progress Tracking
-                 once the recommendation engine ships. Not rendered
-                 as a visible card yet — just documented here so the
-                 next contributor knows where these modules belong. -->
 
         </div>
     </div>
