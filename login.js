@@ -2,24 +2,10 @@ import { auth } from "./js/firebase-config.js";
 import { getPostAuthDestination } from "./js/auth-guard.js";
 import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-// ---------- Dark mode toggle ----------
-const btn = document.querySelector('#lightBtn');
-const body = document.querySelector("body");
-
-btn.addEventListener("click", () => {
-    if (btn) {
-    btn.textContent = body.classList.contains("darkMode") ? "☀️" : "🌙";
-
-    btn.addEventListener("click", () => {
-        body.classList.toggle("darkMode");
-
-        const isDark = body.classList.contains("darkMode");
-
-        btn.textContent = isDark ? "☀️" : "🌙";
-
-        localStorage.setItem("theme", isDark ? "dark" : "light");
-    })
-}
+// NOTE: dark mode toggle is intentionally NOT handled here.
+// script.js (also loaded on this page) already attaches a click
+// listener to #lightBtn for the whole site. A second listener here
+// would double-toggle the class on every click and cancel itself out.
 
 // ---------- Login ----------
 const loginForm = document.querySelector("#loginForm");
@@ -38,11 +24,14 @@ loginForm.addEventListener("submit", (e) => {
 
     signInWithEmailAndPassword(auth, email, password)
         .then(async (userCredential) => {
+            console.log("[login] Firebase auth succeeded for:", userCredential.user.uid);
+
             try {
                 const destination = await getPostAuthDestination(userCredential.user, "");
+                console.log("[login] Redirecting to:", destination);
                 window.location.href = destination;
             } catch (err) {
-                console.error("Could not check questionnaire status:", err);
+                console.error("[login] getPostAuthDestination failed:", err);
                 loginError.textContent = "Logged in, but couldn't load your profile. Please check your connection and try again.";
                 loginError.classList.add("show");
                 loginSubmitBtn.disabled = false;
@@ -50,6 +39,7 @@ loginForm.addEventListener("submit", (e) => {
             }
         })
         .catch((err) => {
+            console.error("[login] signInWithEmailAndPassword failed:", err.code, err.message);
             loginError.textContent = friendlyError(err.code);
             loginError.classList.add("show");
             loginSubmitBtn.disabled = false;

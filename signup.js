@@ -2,25 +2,10 @@ import { auth, db } from "./js/firebase-config.js";
 import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-// ---------- Dark mode toggle ----------
-const btn = document.querySelector('#lightBtn');
-const body = document.querySelector("body");
-
-btn.addEventListener("click", () => {
-    if (btn) {
-    btn.textContent = body.classList.contains("darkMode") ? "☀️" : "🌙";
-
-    btn.addEventListener("click", () => {
-        body.classList.toggle("darkMode");
-
-        const isDark = body.classList.contains("darkMode");
-
-        btn.textContent = isDark ? "☀️" : "🌙";
-
-        localStorage.setItem("theme", isDark ? "dark" : "light");
-    });
-}
-})
+// NOTE: dark mode toggle is intentionally NOT handled here.
+// script.js (also loaded on this page) already attaches a click
+// listener to #lightBtn for the whole site. A second listener here
+// would double-toggle the class on every click and cancel itself out.
 
 // ---------- Sign up ----------
 const signupForm = document.querySelector("#signupForm");
@@ -39,6 +24,10 @@ signupForm.addEventListener("submit", (e) => {
 
     createUserWithEmailAndPassword(auth, email, password)
         .then(async (userCredential) => {
+            // Every new signup is, by definition, a first-time user —
+            // seed their user doc with questionnaireCompleted: false.
+            // No need to check Firestore here at all: a brand-new
+            // account can only ever go to the questionnaire.
             try {
                 await setDoc(
                     doc(db, "users", userCredential.user.uid),
