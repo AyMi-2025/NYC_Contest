@@ -12,6 +12,9 @@
 
     <style>
 
+        /* ---------------------------------------------------------
+           Shared button classes (same pattern as other pages)
+           --------------------------------------------------------- */
         .btn-primary {
             border: 1px solid var(--ink);
             display: inline-flex;
@@ -61,6 +64,9 @@
             border-color: var(--ink);
         }
 
+        /* ---------------------------------------------------------
+           Dashboard shell — two column on desktop, stacked on mobile
+           --------------------------------------------------------- */
         .dashboard-shell {
             max-width: 1200px;
             margin: 0 auto;
@@ -71,6 +77,9 @@
             align-items: start;
         }
 
+        /* ---------------------------------------------------------
+           Sidebar
+           --------------------------------------------------------- */
         .sidebar {
             position: sticky;
             top: 40px;
@@ -116,6 +125,9 @@
             color: var(--accent);
         }
 
+        /* ---------------------------------------------------------
+           Main content column
+           --------------------------------------------------------- */
         .dashboard-main {
             display: flex;
             flex-direction: column;
@@ -142,6 +154,7 @@
             margin-bottom: 20px;
         }
 
+        /* ---- Section 1: Welcome ---- */
         .welcome-card h1 {
             font-size: clamp(22px, 3vw, 28px);
             margin-bottom: 8px;
@@ -185,6 +198,7 @@
             color: var(--ink);
         }
 
+        /* ---- Section 2: Learning Profile ---- */
         .profile-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -209,6 +223,7 @@
             color: var(--ink);
         }
 
+        /* ---- Section 3: Preferences badges ---- */
         .badge-row {
             display: flex;
             flex-wrap: wrap;
@@ -226,6 +241,7 @@
             background: var(--surface);
         }
 
+        /* ---- Section 4: Journey timeline ---- */
         .journey-timeline {
             display: flex;
             flex-direction: column;
@@ -304,6 +320,7 @@
             color: var(--ink-faint);
         }
 
+        /* ---- Section 5: Profile completion ---- */
         .completion-bar-track {
             width: 100%;
             height: 8px;
@@ -328,6 +345,8 @@
             display: block;
         }
 
+        /* ---- Section 5b: Recommended Resources (shown once the
+           recommendation engine has produced results in Firestore) ---- */
         .resource-list {
             display: flex;
             flex-direction: column;
@@ -427,6 +446,122 @@
             font-family: 'Space Grotesk', sans-serif;
         }
 
+        /* ---- Section 4c: Why This Resource ---- */
+        .why-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .why-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .why-item.matched i {
+            color: var(--accent);
+        }
+
+        .why-item.unmatched {
+            color: var(--ink-faint);
+        }
+
+        .why-item.unmatched i {
+            color: var(--ink-faint);
+        }
+
+        .why-item i {
+            font-size: 16px;
+            margin-top: 1px;
+            flex-shrink: 0;
+        }
+
+        .why-item .why-label {
+            color: var(--ink-faint);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-right: 6px;
+        }
+
+        /* ---- Section 4d: Comparison table ---- */
+        .compare-table-wrap {
+            overflow-x: auto;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+        }
+
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 560px;
+        }
+
+        .compare-table th,
+        .compare-table td {
+            text-align: left;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--line);
+            font-size: 13.5px;
+            font-family: 'Inter', sans-serif;
+            vertical-align: top;
+        }
+
+        .compare-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .compare-table th {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--ink-faint);
+            font-weight: 500;
+            background: var(--surface);
+        }
+
+        .compare-table th:first-child,
+        .compare-table td:first-child {
+            font-weight: 600;
+            color: var(--ink);
+            background: var(--surface);
+            min-width: 130px;
+        }
+
+        .compare-table .compare-resource-name {
+            font-weight: 600;
+            color: var(--ink);
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .compare-table .best-tag-inline {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            text-transform: uppercase;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            border-radius: var(--radius);
+            padding: 2px 6px;
+            margin-left: 6px;
+        }
+
+        .compare-table ul {
+            margin: 0;
+            padding-left: 16px;
+            color: var(--ink-soft);
+        }
+
+        .compare-table ul li {
+            margin-bottom: 2px;
+        }
+
+        /* ---- Section 6: What's next CTA ---- */
         .next-card {
             background: var(--surface);
         }
@@ -450,6 +585,7 @@
             flex-wrap: wrap;
         }
 
+        /* ---- Section 7: Did you know ---- */
         .info-card {
             display: flex;
             gap: 14px;
@@ -470,12 +606,14 @@
             line-height: 1.7;
         }
 
+        /* ---- Section 8: Account info ---- */
         .account-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 20px;
         }
 
+        /* ---- Section 9: Quick actions ---- */
         .quick-actions {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -486,6 +624,7 @@
             width: 100%;
         }
 
+        /* ---- Future-ready placeholder note (dev-only, subtle) ---- */
         .future-placeholder {
             border: 1px dashed var(--line);
             border-radius: var(--radius);
@@ -496,6 +635,9 @@
             font-size: 12.5px;
         }
 
+        /* ---------------------------------------------------------
+           Responsive
+           --------------------------------------------------------- */
         @media (max-width: 900px) {
             .dashboard-shell {
                 grid-template-columns: 1fr;
@@ -526,7 +668,7 @@
 <body>
     <main>
 
-        <!-- navbar -->
+        <!-- navbar (shared markup) -->
         <div class="navbar">
             <a href="index.html"><img src="images/logo.png" alt="logo"></a>
             <i class="ri-menu-line" id="hamburgerBtn"></i>
@@ -616,6 +758,7 @@
                 <h2>Learning Preferences</h2>
                 <p class="card-sub">Everything SIFT knows about how you like to learn.</p>
                 <div class="badge-row" id="preferenceBadges">
+                    <!-- populated by dashboard.js -->
                 </div>
             </section>
 
@@ -656,7 +799,9 @@
                 </div>
             </section>
 
-            <!-- Section 4b: Recommended Resources -->
+            <!-- Section 4b: Recommended Resources — only rendered once
+                 questionnaire.js has written topResources/confidenceScore
+                 to Firestore. Hidden by default; dashboard.js reveals it. -->
             <section class="card" id="recommendationsCard" style="display:none;">
                 <h2>Recommended For You</h2>
                 <p class="card-sub">Your top 3 matches based on your learning profile.</p>
@@ -667,6 +812,29 @@
                 </div>
 
                 <div class="resource-list" id="resourceList">
+                    <!-- populated by dashboard.js -->
+                </div>
+            </section>
+
+            <!-- Section 4c: Why This Resource — only rendered alongside
+                 recommendationsCard, same hidden-by-default pattern -->
+            <section class="card" id="whyResourceCard" style="display:none;">
+                <h2>Why This Resource?</h2>
+                <p class="card-sub">How your best match compares against your learning profile.</p>
+                <div class="why-list" id="whyList">
+                    <!-- populated by dashboard.js -->
+                </div>
+            </section>
+
+            <!-- Section 4d: Resource Comparison — only rendered alongside
+                 recommendationsCard, same hidden-by-default pattern -->
+            <section class="card" id="compareCard" style="display:none;">
+                <h2>Compare Your Top 3</h2>
+                <p class="card-sub">A side-by-side look at your recommended resources.</p>
+                <div class="compare-table-wrap">
+                    <table class="compare-table" id="compareTable">
+                        <!-- populated by dashboard.js -->
+                    </table>
                 </div>
             </section>
 
@@ -680,7 +848,9 @@
                 <p class="card-sub" style="margin-bottom:0;">Your profile is complete. The next step is generating personalized learning recommendations.</p>
             </section>
 
-            <!-- Section 6: What's Next CTA -->
+            <!-- Section 6: What's Next CTA — copy/button swap between
+                 "not generated yet" and "already generated" states,
+                 controlled by dashboard.js based on Firestore data. -->
             <section class="card next-card">
                 <h2 id="nextCardHeading">You're Almost Ready!</h2>
                 <p id="nextCardText">We've successfully understood your learning profile. The next step is to analyze your preferences and recommend the learning resources that best match your goals.</p>
@@ -737,6 +907,14 @@
                     <button class="btn-secondary" id="quickLogoutBtn"><i class="ri-logout-box-line"></i> Logout</button>
                 </div>
             </section>
+
+            <!-- Future-ready space: intentionally empty. Reserved for
+                 Recommendation Confidence, Top 3 Resources, Resource
+                 Comparison, Why This / Why Not, and Progress Tracking
+                 once the recommendation engine ships. Not rendered
+                 as a visible card yet — just documented here so the
+                 next contributor knows where these modules belong. -->
+
         </div>
     </div>
 
