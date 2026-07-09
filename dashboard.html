@@ -10,6 +10,9 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet"/>
     <link rel="shortcut icon" href="images/logo.png" type="image/x-icon">
 
+    <!-- Page-specific styles only. Reuses color/spacing/type tokens
+         already defined in style.css so this page stays in lockstep
+         with the rest of the site. -->
     <style>
 
         /* ---------------------------------------------------------
@@ -318,31 +321,6 @@
             font-size: 12.5px;
             font-family: 'IBM Plex Mono', monospace;
             color: var(--ink-faint);
-        }
-
-        /* ---- Section 5: Profile completion ---- */
-        .completion-bar-track {
-            width: 100%;
-            height: 8px;
-            border-radius: 4px;
-            background: var(--line);
-            overflow: hidden;
-            margin-bottom: 14px;
-        }
-
-        .completion-bar-fill {
-            height: 100%;
-            background: var(--accent);
-            border-radius: 4px;
-            transition: width 0.4s ease;
-        }
-
-        .completion-percent {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 13px;
-            color: var(--ink-faint);
-            margin-bottom: 12px;
-            display: block;
         }
 
         /* ---- Section 5b: Recommended Resources (shown once the
@@ -799,18 +777,17 @@
                 </div>
             </section>
 
-            <!-- Section 6: What's Next CTA — copy/button swap between
-                 "not generated yet" and "already generated" states,
-                 controlled by dashboard.js based on Firestore data. -->
+            <!-- Section 5: Your Recommendations Are In! — informational
+                 only now. Buttons removed per spec: "Retake Questionnaire"
+                 already exists in the Learning Profile card above, so
+                 repeating it here was redundant, and "Recommendations
+                 Ready" was a status label masquerading as a button. -->
             <section class="card next-card">
                 <h2 id="nextCardHeading">You're Almost Ready!</h2>
-                <p id="nextCardText">We've successfully understood your learning profile. The next step is to analyze your preferences and recommend the learning resources that best match your goals.</p>
-                <div class="cta-buttons">
-                    <button class="btn-primary" id="generateBtn" disabled><i class="ri-hourglass-line"></i> Coming Soon</button>
-                </div>
+                <p id="nextCardText" style="margin-bottom:0;">We've successfully understood your learning profile. The next step is to analyze your preferences and recommend the learning resources that best match your goals.</p>
             </section>
 
-            <!-- Section 4b: Recommended Resources — only rendered once
+            <!-- Section 6: Recommended Resources — only rendered once
                  questionnaire.js has written topResources/confidenceScore
                  to Firestore. Hidden by default; dashboard.js reveals it. -->
             <section class="card" id="recommendationsCard" style="display:none;">
@@ -827,7 +804,7 @@
                 </div>
             </section>
 
-            <!-- Section 4c: Why This Resource — only rendered alongside
+            <!-- Section 7: Why This Resource — only rendered alongside
                  recommendationsCard, same hidden-by-default pattern -->
             <section class="card" id="whyResourceCard" style="display:none;">
                 <h2>Why This Resource?</h2>
@@ -837,7 +814,7 @@
                 </div>
             </section>
 
-            <!-- Section 4d: Resource Comparison — only rendered alongside
+            <!-- Section 8: Resource Comparison — only rendered alongside
                  recommendationsCard, same hidden-by-default pattern -->
             <section class="card" id="compareCard" style="display:none;">
                 <h2>Compare Your Top 3</h2>
@@ -849,7 +826,7 @@
                 </div>
             </section>
 
-            <!-- Section 7: Did You Know -->
+            <!-- Section 9: Did You Know -->
             <section class="card info-card">
                 <i class="ri-lightbulb-flash-line"></i>
                 <div>
@@ -858,7 +835,7 @@
                 </div>
             </section>
 
-            <!-- Section 8: Account Information -->
+            <!-- Section 10: Account Information -->
             <section class="card">
                 <h2>Account Information</h2>
                 <p class="card-sub">Your account details on file with SIFT.</p>
@@ -886,16 +863,21 @@
                 </div>
             </section>
 
-            <!-- Section 9: Quick Actions -->
+            <!-- Section 11: Quick Actions -->
             <section class="card">
                 <h2>Quick Actions</h2>
                 <div class="quick-actions">
-                    <a href="pages/questionnaire.html"><button class="btn-secondary"><i class="ri-edit-line"></i> Edit Questionnaire</button></a>
+                    <a href="pages/questionnaire.html"><button class="btn-secondary"><i class="ri-edit-line"></i> Retake Questionnaire</button></a>
                     <a href="pages/profile.html"><button class="btn-secondary"><i class="ri-user-settings-line"></i> Update Profile</button></a>
                     <a href="pages/settings.html"><button class="btn-secondary"><i class="ri-settings-3-line"></i> Settings</button></a>
                     <button class="btn-secondary" id="quickLogoutBtn"><i class="ri-logout-box-line"></i> Logout</button>
                 </div>
             </section>
+
+            <!-- Future-ready space: intentionally empty. Reserved for
+                 Progress Tracking once that module ships. Not rendered
+                 as a visible card yet — just documented here so the
+                 next contributor knows where it belongs. -->
 
         </div>
     </div>

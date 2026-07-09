@@ -20,7 +20,6 @@ const accountProvider = document.getElementById("accountProvider");
 
 const logoutBtn = document.getElementById("logout");
 const quickLogoutBtn = document.getElementById("quickLogoutBtn");
-const generateBtn = document.getElementById("generateBtn");
 
 const recommendationsCard = document.getElementById("recommendationsCard");
 const confidenceValue = document.getElementById("confidenceValue");
@@ -147,8 +146,7 @@ async function loadDashboard(user, db, doc, getDoc) {
     // Recommendations: questionnaire.js writes topResources + a
     // confidenceScore to Firestore once it scores resources.json.
     // If that data exists, reveal the recommendations card and flip
-    // the journey/CTA into their "generated" state. If not, the
-    // dashboard falls back to its original "Coming Soon" state.
+    // the Recommendation Generation journey step into its "done" state.
     const hasRecommendations = Array.isArray(data.topResources) && data.topResources.length > 0;
 
     if (hasRecommendations) {
@@ -156,23 +154,19 @@ async function loadDashboard(user, db, doc, getDoc) {
         renderWhyThisResource(data.topResources[0], data.questionnaire || {});
         renderComparisonTable(data.topResources);
         setJourneyStepDone(journeyStepRecommend, "Complete");
-        // "Start Learning" only truly starts once the user has acted
-        // on a recommendation, not merely because one exists — so it
-        // stays pending here regardless.
 
         nextCardHeading.textContent = "Your Recommendations Are In!";
-        nextCardText.textContent = "We've matched your learning profile against our resource library. Check out your top 3 picks above, or retake the questionnaire if your goals have changed.";
+        nextCardText.textContent = "We've matched your learning profile against our resource library. Check out your top 3 picks below.";
 
-        if (generateBtn) {
-            generateBtn.innerHTML = `<i class="ri-check-line"></i> Recommendations Ready`;
-            generateBtn.disabled = true; // still non-interactive; it's a status, not an action
-        }
+        // "Start Learning" becomes done the moment the user visits any
+        // of their Top 3 resources for the first time (tracked via
+        // startedLearning in Firestore, set below on first click). If
+        // that's already true from a previous session, reflect it here
+        // immediately rather than waiting for another click.
+        attachResourceLinkTracking(user.uid, data.startedLearning === true);
 
-    } else {
-        // Original v1 behavior: nothing generated yet.
-        if (generateBtn) {
-            generateBtn.innerHTML = `<i class="ri-hourglass-line"></i> Coming Soon`;
-            generateBtn.disabled = true;
+        if (data.startedLearning === true) {
+            setJourneyStepDone(journeyStepLearning, "Complete");
         }
     }
 }
@@ -324,6 +318,40 @@ function renderComparisonTable(topResources) {
         <thead><tr><th></th>${headerCells}</tr></thead>
         <tbody>${bodyRows}</tbody>
     `;
+}
+
+/**
+ * Attaches click tracking to every "Visit Resource" / "Visit" link
+ * inside both the resource cards and the comparison table (any of
+ * the Top 3). On the first click, saves startedLearning: true to
+ * Firestore and marks the "Start Learning" journey step done — but
+ * only once. If it's already true (from a previous session), skip
+ * the write entirely per spec ("do not overwrite unnecessarily") and
+ * just wire the listeners inert, since the journey step is already
+ * marked done by the caller.
+ */
+function attachResourceLinkTracking(uid, alreadyStarted) {
+    let started = alreadyStarted;
+    const links = document.querySelectorAll("#resourceList .resource-link, #compareTable .resource-link");
+
+    links.forEach((link) => {
+        link.addEventListener("click", async () => {
+            if (started) return; // already recorded — nothing to do
+            started = true;
+
+            setJourneyStepDone(journeyStepLearning, "Complete");
+
+            try {
+                const { db } = await import("./firebase-config.js");
+                const { doc, setDoc } = await import(
+                    "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"
+                );
+                await setDoc(doc(db, "users", uid), { startedLearning: true }, { merge: true });
+            } catch (err) {
+                console.warn("Could not save startedLearning to Firestore.", err);
+            }
+        });
+    });
 }
 
 /**
