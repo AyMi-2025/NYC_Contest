@@ -51,6 +51,13 @@ const compareTable = document.getElementById("compareTable");
                 return;
             }
 
+            if (!user.emailVerified) {
+                // Signed in with email/password but hasn't verified yet.
+                // (Google accounts are always emailVerified === true.)
+                window.location.href = "login.html";
+                return;
+            }
+
             await loadDashboard(user, db, doc, getDoc);
         });
 

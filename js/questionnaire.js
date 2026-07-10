@@ -24,6 +24,30 @@ const multiHint = document.getElementById("multiHint");
 
 let currentStep = 1;
 
+// ------------------------------------------------------------
+// Auth guard: this page requires a signed-in, verified user.
+// (Google accounts are always emailVerified === true, so this
+// only actually blocks unverified email/password accounts.)
+// Runs independently of the wizard UI below — same reasoning as
+// dashboard.js's guard.
+// ------------------------------------------------------------
+(async () => {
+    try {
+        const { auth } = await import("../js/firebase-config.js");
+        const { onAuthStateChanged } = await import(
+            "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"
+        );
+
+        onAuthStateChanged(auth, (user) => {
+            if (!user || !user.emailVerified) {
+                window.location.href = "../login.html";
+            }
+        });
+    } catch (err) {
+        console.warn("Could not verify auth state on questionnaire page.", err);
+    }
+})();
+
 // Answers keyed by each step's data-key (skill, experience, goal,
 // learningStyle, language, studyTime, preferences[])
 const answers = {};

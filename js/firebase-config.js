@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getAuth, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import { initializeFirestore } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -19,3 +19,8 @@ export const auth = getAuth(app);
 export const db = initializeFirestore(app, {
   experimentalAutoDetectLongPolling: true,
 });
+
+// Shared Google provider instance — centralized here for the same
+// reason auth/db are: login.js and signup.js both need the exact
+// same provider, so it's instantiated once instead of twice.
+export const googleProvider = new GoogleAuthProvider();

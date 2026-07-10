@@ -12,7 +12,7 @@
 
 import { auth, db } from "./firebase-config.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 export { auth, db };
 
@@ -55,4 +55,23 @@ export async function isQuestionnaireCompleted(uid) {
 export async function getPostAuthDestination(user, rootPrefix = "") {
     const completed = await isQuestionnaireCompleted(user.uid);
     return completed ? `${rootPrefix}dashboard.html` : `${rootPrefix}pages/questionnaire.html`;
+}
+
+/**
+ * Creates users/{uid} using the project's existing schema ONLY if
+ * it doesn't already exist — never overwrites an existing doc.
+ *
+ * This is shared by both login.js and signup.js's Google sign-in
+ * handlers: signInWithPopup silently creates a brand-new Firebase
+ * Auth account on someone's very first Google sign-in (there's no
+ * separate "Google signup" step), so both entry points need to run
+ * this same "first time? seed the doc" check.
+ */
+export async function ensureUserDocExists(uid) {
+    const ref = doc(db, "users", uid);
+    const snapshot = await getDoc(ref);
+
+    if (!snapshot.exists()) {
+        await setDoc(ref, { questionnaireCompleted: false }, { merge: true });
+    }
 }
