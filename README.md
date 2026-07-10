@@ -28,7 +28,7 @@
 
 <div align="center">
 
-| 🎯 15 | 📚 43 | 🌐 2 | ❓ 7 |
+| 🎯 15 | 📚 124 | 🌐 2 | ❓ 7 |
 |:---:|:---:|:---:|:---:|
 | **Skills Covered** | **Curated Resources** | **Languages Supported** | **Questions to Match You** |
 
